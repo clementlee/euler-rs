@@ -1,3 +1,4 @@
+mod lib;
 mod problems;
 
 use std::env;
@@ -11,6 +12,7 @@ fn main() {
         1 => println!("{}", problems::p1::solution()),
         2 => println!("{}", problems::p2::solution()),
         3 => println!("{}", problems::p3::solution()),
+        4 => println!("{}", problems::p4::solution()),
         n => println!(":( bad value: {}", n),
     }
 }
