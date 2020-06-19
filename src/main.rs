@@ -1,3 +1,5 @@
+mod problems;
+
 fn main() {
-    println!("Hello, world!");
+    println!("{}", problems::p1::solution());
 }
