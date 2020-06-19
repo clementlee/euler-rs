@@ -13,6 +13,7 @@ fn main() {
         2 => println!("{}", problems::p2::solution()),
         3 => println!("{}", problems::p3::solution()),
         4 => println!("{}", problems::p4::solution()),
+        5 => println!("{}", problems::p5::solution()),
         n => println!(":( bad value: {}", n),
     }
 }
