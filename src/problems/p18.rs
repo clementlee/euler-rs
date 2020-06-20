@@ -27,10 +27,10 @@ pub fn reduce(x: Vec<u32>, y: Vec<u32>) -> Vec<u32> {
     let mut ret = vec![0; y.len()];
 
     ret[0] = y[0] + x[0];
-    ret[y.len()-1] = y[y.len()-1] + x[x.len()-1];
+    ret[y.len() - 1] = y[y.len() - 1] + x[x.len() - 1];
 
-    for i in 1..(y.len() -1) {
-        ret[i] = y[i] + max(x[i-1], x[i])
+    for i in 1..(y.len() - 1) {
+        ret[i] = y[i] + max(x[i - 1], x[i])
     }
 
     ret
@@ -43,6 +43,8 @@ pub fn solution() -> u32 {
         .map(|x| x.split_whitespace().map(|y| y.parse().unwrap()).collect())
         .collect();
 
-    
-    tri.iter().fold(vec!(), |acc, x| reduce(acc, x.to_vec())).iter().fold(0, |acc, x| max(acc, *x))
+    tri.iter()
+        .fold(vec![], |acc, x| reduce(acc, x.to_vec()))
+        .iter()
+        .fold(0, |acc, x| max(acc, *x))
 }

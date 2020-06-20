@@ -1,5 +1,5 @@
 fn stringify(x: u32) -> String {
-    let ret:String = match x {
+    let ret: String = match x {
         0 => "".to_string(),
         1 => "one".to_string(),
         2 => "two".to_string(),
@@ -31,11 +31,11 @@ fn stringify(x: u32) -> String {
         21..=99 => {
             let first = stringify(x / 10 * 10);
             let second = stringify(x % 10);
-            
+
             [first, second].concat()
-        },
+        }
         100..=999 => {
-            let first = stringify(x/ 100);
+            let first = stringify(x / 100);
             let mut next = stringify(x % 100);
             if next.len() != 0 {
                 next = ["and".to_string(), next].concat();
@@ -44,17 +44,16 @@ fn stringify(x: u32) -> String {
             [first, "hundred".to_string(), next].concat()
         }
         1000..=9999 => {
-            let first = stringify(x/ 1000);
+            let first = stringify(x / 1000);
             let next = stringify(x % 1000);
 
             [first, "thousand".to_string(), next].concat()
         }
-        _n => panic!("bad")
+        _n => panic!("bad"),
     };
 
     ret
 }
 pub fn solution() -> usize {
-    println!("{}", stringify(100));
     (1..=1000).map(|x| stringify(x).len()).sum()
 }
