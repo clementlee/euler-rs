@@ -115,7 +115,6 @@ impl BigNum {
         for i in 0..max_n {
             let sum = self.val.get(i).unwrap_or(&0) + other.val.get(i).unwrap_or(&0) + carry;
 
-
             let base = sum % 10;
             carry = (sum - base) / 10;
             if i >= self.val.len() {
@@ -136,16 +135,23 @@ pub fn solution() -> u64 {
         .trim()
         .split('\n')
         .map(|x| BigNum {
-            val: x.chars().rev().map(|y| y.to_digit(10).unwrap() as u64).collect(),
+            val: x
+                .chars()
+                .rev()
+                .map(|y| y.to_digit(10).unwrap() as u64)
+                .collect(),
         })
         .collect();
 
-
-    let mut base = BigNum { val: vec!(0) };
+    let mut base = BigNum { val: vec![0] };
 
     for bg in vals {
         base.add_inplace(&bg);
     }
 
-    base.val.iter().rev().take(10).fold(0, |acc, x| acc * 10 + x)
+    base.val
+        .iter()
+        .rev()
+        .take(10)
+        .fold(0, |acc, x| acc * 10 + x)
 }
