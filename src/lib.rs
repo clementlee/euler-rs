@@ -89,3 +89,7 @@ impl ops::Div<&FactorizedNum> for FactorizedNum {
         Ok(FactorizedNum { factors: newmap })
     }
 }
+
+pub fn sum_divisors(x: u32) -> u32 {
+    (1..=(x / 2)).filter(|y| x % y == 0).sum()
+}
