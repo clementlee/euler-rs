@@ -11,7 +11,7 @@ pub fn solution() -> u32 {
     for (key, value) in &cache {
         let amicable: bool = match cache.get(&value) {
             Some(val) => *key == *val && key != value,
-            None => false
+            None => false,
         };
 
         if amicable {
