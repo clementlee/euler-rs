@@ -32,7 +32,7 @@ pub fn solution() -> i32 {
             loop {
                 let val = n * n + a * n + b;
                 if val < 0 {
-                    break
+                    break;
                 }
                 let val = val as u32;
                 let ret = is_prime(val, primes);
