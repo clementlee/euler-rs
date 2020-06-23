@@ -1,3 +1,4 @@
+use std::cmp;
 use std::collections::HashMap;
 use std::ops;
 
@@ -92,4 +93,61 @@ impl ops::Div<&FactorizedNum> for FactorizedNum {
 
 pub fn sum_divisors(x: u32) -> u32 {
     (1..=(x / 2)).filter(|y| x % y == 0).sum()
+}
+
+#[derive(Debug, Clone)]
+pub struct BigInt {
+    pub digits: Vec<u8>,
+}
+
+impl BigInt {
+    pub fn create(x: u32) -> BigInt {
+        let mut copy = x;
+        let mut ret = vec![];
+
+        while copy > 0 {
+            ret.push((copy % 10) as u8);
+            copy /= 10
+        }
+
+        BigInt { digits: ret }
+    }
+}
+
+impl ops::Add<&BigInt> for BigInt {
+    type Output = BigInt;
+
+    fn add(self, other: &BigInt) -> Self {
+        let mut new = self.clone();
+        new += &other;
+
+        new
+    }
+}
+
+impl ops::AddAssign<&BigInt> for BigInt {
+    fn add_assign(&mut self, other: &Self) {
+        let rhs = &other.digits;
+
+        let digits_sans_carry = cmp::max(self.digits.len(), rhs.len());
+
+        let mut carry = 0;
+
+        for i in 0..digits_sans_carry {
+            let sum = self.digits.get(i).unwrap_or(&0) + rhs.get(i).unwrap_or(&0) + carry;
+
+            let base = sum % 10;
+            if i < self.digits.len() {
+                self.digits[i] = base;
+            } else {
+                self.digits.push(base);
+            }
+
+            carry = (sum - base) / 10;
+        }
+
+        if carry > 0 {
+            self.digits.push(carry);
+        }
+    }
 }
