@@ -35,6 +35,7 @@ fn main() {
         24 => println!("{}", problems::p24::solution()),
         25 => println!("{}", problems::p25::solution()),
         26 => println!("{}", problems::p26::solution()),
+        27 => println!("{}", problems::p27::solution()),
         n => println!(":( bad value: {}", n),
     }
 }
