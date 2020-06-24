@@ -151,3 +151,13 @@ impl ops::AddAssign<&BigInt> for BigInt {
         }
     }
 }
+
+pub fn get_digits(mut x: u32) -> Vec<u32> {
+    let mut ret = vec![];
+    while x > 0 {
+        ret.push(x % 10);
+        x /= 10
+    }
+
+    ret
+}

@@ -1,14 +1,6 @@
 const POW: u32 = 5;
 
-fn get_digits(mut x: u32) -> Vec<u32> {
-    let mut ret = vec![];
-    while x > 0 {
-        ret.push(x % 10);
-        x /= 10
-    }
-
-    ret
-}
+use crate::lib::get_digits;
 
 pub fn solution() -> u32 {
     let max = 9u32.pow(POW);
