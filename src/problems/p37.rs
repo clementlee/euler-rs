@@ -33,7 +33,6 @@ pub fn solution() -> u32 {
             }
 
             if is_left_prime && is_right_prime {
-                println!("{} is special", i);
                 special_primes.push(i)
             }
         }
