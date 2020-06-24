@@ -152,12 +152,16 @@ impl ops::AddAssign<&BigInt> for BigInt {
     }
 }
 
-pub fn get_digits(mut x: u32) -> Vec<u32> {
+pub fn get_digits_base(mut x: u32, base: u32) -> Vec<u32> {
     let mut ret = vec![];
     while x > 0 {
-        ret.push(x % 10);
-        x /= 10
+        ret.push(x % base);
+        x /= base
     }
 
     ret
+}
+
+pub fn get_digits(x: u32) -> Vec<u32> {
+    get_digits_base(x, 10)
 }

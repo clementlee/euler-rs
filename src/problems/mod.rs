@@ -27,6 +27,8 @@ pub mod p32;
 pub mod p33;
 pub mod p34;
 pub mod p35;
+pub mod p36;
+pub mod p37;
 pub mod p4;
 pub mod p5;
 pub mod p6;
