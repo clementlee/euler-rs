@@ -46,6 +46,10 @@ fn main() {
         35 => println!("{}", problems::p35::solution()),
         36 => println!("{}", problems::p36::solution()),
         37 => println!("{}", problems::p37::solution()),
+        38 => println!("{}", problems::p38::solution()),
+        39 => println!("{}", problems::p39::solution()),
+        40 => println!("{}", problems::p40::solution()),
+        41 => println!("{}", problems::p41::solution()),
         n => println!(":( bad value: {}", n),
     }
 }

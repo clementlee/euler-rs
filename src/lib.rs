@@ -165,3 +165,47 @@ pub fn get_digits_base(mut x: u32, base: u32) -> Vec<u32> {
 pub fn get_digits(x: u32) -> Vec<u32> {
     get_digits_base(x, 10)
 }
+
+pub fn sieve_primes(x: usize) -> Vec<usize> {
+    let mut primes = vec![];
+    let mut marker = vec![false; x];
+    for i in 2..x {
+        if marker[i] {
+            continue;
+        }
+        primes.push(i);
+        marker[i] = true;
+        for j in (2 * i..x).step_by(i) {
+            marker[j] = true;
+        }
+    }
+
+    primes
+}
+
+pub fn num_digits(x: u64) -> u64 {
+    let x = x as f64;
+    let x = x.log10() + 1f64;
+
+    x as u64
+}
+
+pub fn pandigital(mut x: u64, n: u64) -> bool {
+    let mut digits = [false; 9];
+    while x > 0 {
+        let digit = x % 10;
+        if digit == 0 || digit > n {
+            return false;
+        }
+        let digit = digit - 1;
+        let digit = digit as usize;
+        if digits[digit] {
+            return false;
+        }
+
+        digits[digit] = true;
+        x /= 10;
+    }
+
+    digits.iter().take(n as usize).all(|&x| x)
+}
