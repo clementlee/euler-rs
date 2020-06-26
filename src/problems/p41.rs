@@ -6,7 +6,7 @@ pub fn solution() -> usize {
         .iter()
         .rev()
         .map(|&x| x)
-        .filter(|&x| pandigital(x as u64, num_digits(x as u64)))
+        .filter(|&x| pandigital(x as u64, num_digits(x as u64), false))
         .nth(0)
         .unwrap()
 }

@@ -34,6 +34,8 @@ pub mod p39;
 pub mod p4;
 pub mod p40;
 pub mod p41;
+pub mod p42;
+pub mod p43;
 pub mod p5;
 pub mod p6;
 pub mod p7;

@@ -168,8 +168,8 @@ pub fn get_digits(x: u32) -> Vec<u32> {
 
 pub fn sieve_primes(x: usize) -> Vec<usize> {
     let mut primes = vec![];
-    let mut marker = vec![false; x];
-    for i in 2..x {
+    let mut marker = vec![false; x + 1];
+    for i in 2..=x {
         if marker[i] {
             continue;
         }
@@ -190,14 +190,13 @@ pub fn num_digits(x: u64) -> u64 {
     x as u64
 }
 
-pub fn pandigital(mut x: u64, n: u64) -> bool {
-    let mut digits = [false; 9];
+pub fn pandigital(mut x: u64, n: u64, include_zero: bool) -> bool {
+    let mut digits = [false; 10];
     while x > 0 {
         let digit = x % 10;
-        if digit == 0 || digit > n {
+        if (!include_zero && digit == 0) || digit > n {
             return false;
         }
-        let digit = digit - 1;
         let digit = digit as usize;
         if digits[digit] {
             return false;
@@ -206,6 +205,36 @@ pub fn pandigital(mut x: u64, n: u64) -> bool {
         digits[digit] = true;
         x /= 10;
     }
+    digits
+        .iter()
+        .skip(!include_zero as usize)
+        .take(n as usize)
+        .all(|&x| x)
+}
 
-    digits.iter().take(n as usize).all(|&x| x)
+pub fn permutations(input: Vec<u8>) -> Vec<Vec<u8>> {
+    if input.len() <= 1 {
+        return vec![input];
+    }
+
+    let mut result: Vec<Vec<u8>> = vec![];
+
+    for i in 0..input.len() {
+        let first = &input[0..i];
+        let second = &input[i + 1..input.len()];
+
+        let val = input[i];
+
+        let mut concat = first.to_vec();
+        concat.extend(second.to_vec());
+
+        for perm in permutations(concat) {
+            let mut new_perm = vec![val];
+            new_perm.extend(perm);
+
+            result.push(new_perm);
+        }
+    }
+
+    result
 }

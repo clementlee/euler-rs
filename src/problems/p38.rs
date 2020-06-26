@@ -22,7 +22,7 @@ pub fn solution() -> u64 {
     (1..100_000)
         .flat_map(|x| (1..10).map(move |y| (x, y)))
         .filter_map(|(x, y)| create_num(x, y))
-        .filter(|&x| pandigital(x, 9))
+        .filter(|&x| pandigital(x, 9, false))
         .max()
         .unwrap()
 }
