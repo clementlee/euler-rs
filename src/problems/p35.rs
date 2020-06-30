@@ -20,7 +20,7 @@ pub fn solution() -> u32 {
         })
         .collect();
 
-    let primes_set: HashSet<u32> = primes[2..primes.len()].iter().map(|&x| x).collect();
+    let primes_set: HashSet<u32> = primes[2..primes.len()].iter().copied().collect();
 
     let mut count = 0;
     for &prime in primes_set.iter() {

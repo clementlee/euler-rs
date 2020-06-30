@@ -9,9 +9,9 @@ fn create_num(x: u64, y: u64) -> Option<u64> {
 
             let prod = acc * 10u64.pow(digits) + prod;
             if prod > MAX {
-                return None;
+                None
             } else {
-                return Some(prod);
+                Some(prod)
             }
         }
         None => None,

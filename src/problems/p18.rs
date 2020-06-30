@@ -20,7 +20,7 @@ const TRI_TEXT: &str = "
 pub fn reduce(x: Vec<u32>, y: Vec<u32>) -> Vec<u32> {
     assert_eq!(x.len() + 1, y.len());
 
-    if x.len() < 1 {
+    if x.is_empty() {
         return y;
     }
 

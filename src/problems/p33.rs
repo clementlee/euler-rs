@@ -5,9 +5,9 @@ fn gcd(x: u32, y: u32) -> u32 {
 
     let modulus = max % min;
     if modulus == 0 {
-        return min;
+        min
     } else {
-        return gcd(min, modulus);
+        gcd(min, modulus)
     }
 }
 pub fn solution() -> u32 {

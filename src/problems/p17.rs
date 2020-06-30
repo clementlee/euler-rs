@@ -1,4 +1,5 @@
 fn stringify(x: u32) -> String {
+    #[allow(clippy::match_overlapping_arm)]
     let ret: String = match x {
         0 => "".to_string(),
         1 => "one".to_string(),
@@ -37,7 +38,7 @@ fn stringify(x: u32) -> String {
         100..=999 => {
             let first = stringify(x / 100);
             let mut next = stringify(x % 100);
-            if next.len() != 0 {
+            if !next.is_empty() {
                 next = ["and".to_string(), next].concat();
             }
 

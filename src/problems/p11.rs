@@ -36,7 +36,7 @@ impl Grid {
     fn create(grid_text: &str) -> Grid {
         let mut data = Vec::new();
         let mut row_length = None;
-        for line in grid_text.trim().split("\n") {
+        for line in grid_text.trim().split('\n') {
             let mut current_row_length = 0;
             for num in line.split_ascii_whitespace() {
                 current_row_length += 1;
@@ -54,7 +54,7 @@ impl Grid {
         }
 
         Grid {
-            data: data,
+            data,
             row_length: row_length.unwrap(),
         }
     }

@@ -1,5 +1,3 @@
-use std;
-
 pub fn solution() -> u64 {
     let mut num: u64 = 600851475143;
 

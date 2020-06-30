@@ -6,6 +6,7 @@ struct BigNum {
 }
 
 impl ops::MulAssign<u32> for BigNum {
+    #[allow(clippy::suspicious_op_assign_impl)]
     fn mul_assign(&mut self, _rhs: u32) {
         let mut carry = 0;
         for i in 0..self.nums.len() {

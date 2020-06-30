@@ -14,7 +14,7 @@ pub fn solution() -> u64 {
                 }
                 x /= 10;
             }
-            return true;
+            true
         })
         .sum()
 }
