@@ -5,8 +5,8 @@ pub fn solution() -> usize {
     sieve_primes(1_000_000_000)
         .iter()
         .rev()
-        .map(|&x| x)
+        .cloned()
         .filter(|&x| pandigital(x as u64, num_digits(x as u64), false))
-        .nth(0)
+        .next()
         .unwrap()
 }

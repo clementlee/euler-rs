@@ -13,7 +13,7 @@ pub fn solution() -> u32 {
             let mut copy = i;
             let mut is_left_prime = true;
             while copy > 0 {
-                if !primes.binary_search(&copy).is_ok() {
+                if primes.binary_search(&copy).is_err() {
                     is_left_prime = false;
                     break;
                 }
@@ -25,8 +25,8 @@ pub fn solution() -> u32 {
             let mut is_right_prime = true;
             for j in (1..=shift).rev() {
                 let modulus = 10u32.pow(j);
-                copy = copy % modulus;
-                if !primes.binary_search(&copy).is_ok() {
+                copy %= modulus;
+                if primes.binary_search(&copy).is_err() {
                     is_right_prime = false;
                     break;
                 }

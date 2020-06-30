@@ -26,7 +26,7 @@ impl Iterator for Cham {
 
 pub fn solution() -> u32 {
     let cham = Cham { counter: 0, sub: 0 };
-    let mut vals = cham.into_iter().flat_map(|x| x.into_iter()).skip(1);
+    let mut vals = cham.flat_map(|x| x.into_iter()).skip(1);
 
     let needs = [1, 10, 100, 1000, 10_000, 100_000, 1_000_000];
     let mut prev = 0;

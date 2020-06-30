@@ -12,7 +12,7 @@ pub fn is_palindrome(num: u32) -> bool {
         temp /= 10;
     }
 
-    return reversed == num;
+    reversed == num
 }
 
 pub fn get_factorization(mut num: u32) -> HashMap<u32, u32> {
@@ -62,8 +62,9 @@ impl FactorizedNum {
 impl ops::Mul<&FactorizedNum> for FactorizedNum {
     type Output = FactorizedNum;
 
+    #[allow(clippy::suspicious_arithmetic_impl)]
     fn mul(self, _rhs: &FactorizedNum) -> FactorizedNum {
-        let mut newmap = self.factors.clone();
+        let mut newmap = self.factors;
 
         for (key, val) in &_rhs.factors {
             newmap.insert(*key, newmap.get(&key).unwrap_or(&0) + val);
@@ -76,8 +77,9 @@ impl ops::Mul<&FactorizedNum> for FactorizedNum {
 impl ops::Div<&FactorizedNum> for FactorizedNum {
     type Output = Result<FactorizedNum, String>;
 
+    #[allow(clippy::suspicious_arithmetic_impl)]
     fn div(self, _rhs: &FactorizedNum) -> Self::Output {
-        let mut newmap = self.factors.clone();
+        let mut newmap = self.factors;
 
         for (key, val) in &_rhs.factors {
             let newval = *newmap.get(&key).unwrap_or(&0) as i32 - *val as i32;
@@ -118,7 +120,7 @@ impl ops::Add<&BigInt> for BigInt {
     type Output = BigInt;
 
     fn add(self, other: &BigInt) -> Self {
-        let mut new = self.clone();
+        let mut new = self;
         new += &other;
 
         new
@@ -126,6 +128,7 @@ impl ops::Add<&BigInt> for BigInt {
 }
 
 impl ops::AddAssign<&BigInt> for BigInt {
+    #[allow(clippy::suspicious_op_assign_impl)]
     fn add_assign(&mut self, other: &Self) {
         let rhs = &other.digits;
 
